@@ -14,6 +14,8 @@ int main(void)
 }
 
     while (!WindowShouldClose()) {
+        UpdateNoteIO();
+        
         BeginDrawing();
         ClearBackground(RAYWHITE);
         DrawText("Hello, raylib!", 32, 32, 32, DARKBLUE);
