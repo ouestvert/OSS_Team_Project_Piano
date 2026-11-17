@@ -8,21 +8,23 @@ int main(void)
     SetTargetFPS(60);
     InitAudioDevice();
     if (!InitNoteIO())
-{
+    {
     CloseAudioDevice();
     CloseWindow();
     return 1;
-}
+    }
 
-    while (!WindowShouldClose()) {
+    while (!WindowShouldClose()) 
+    {
         UpdateNoteIO();
         
-    int keyMap[12] = { //임시 키 설정
-        KEY_A, KEY_W, KEY_S, KEY_E, KEY_D, KEY_F,
-        KEY_T, KEY_G, KEY_Y, KEY_H, KEY_U, KEY_J
-    };
+        int keyMap[12] = 
+        { //key mapping for the 12 notes
+            KEY_A, KEY_W, KEY_S, KEY_E, KEY_D, KEY_F,
+            KEY_T, KEY_G, KEY_Y, KEY_H, KEY_U, KEY_J
+        };
 
-    while (!WindowShouldClose()) {
+   
         bool pressed[12]={false};
 
          for (int i = 0; i < 12; i++)
