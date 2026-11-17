@@ -1,10 +1,22 @@
 #include "raylib.h"
+#include "note_io.h"
 #include "ui.h"
 
 int main(void)
 {
     InitWindow(1000, 600, "Team Piano - raylib Test");
     SetTargetFPS(60);
+    InitAudioDevice();
+    if (!InitNoteIO())
+{
+    CloseAudioDevice();
+    CloseWindow();
+    return 1;
+}
+
+    while (!WindowShouldClose()) {
+        UpdateNoteIO();
+        
     int keyMap[12] = { //임시 키 설정
         KEY_A, KEY_W, KEY_S, KEY_E, KEY_D, KEY_F,
         KEY_T, KEY_G, KEY_Y, KEY_H, KEY_U, KEY_J
@@ -26,6 +38,8 @@ int main(void)
         EndDrawing();
     }
 
+    UnloadNoteIO();
+    CloseAudioDevice();
     CloseWindow();
     return 0;
 }
