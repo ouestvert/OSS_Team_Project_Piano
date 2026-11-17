@@ -4,19 +4,22 @@
 #include <stdbool.h>
 
 #define MAX_EVENTS 1024
+#define NOTE_COUNT 12
+
 
 typedef struct{
     int note;
     float time;
-    bool pressed;
-}NonteEvent;
+    float duration;
+}NoteEvent;
 
 void RecordingStart(void);
 void RecordingStop(void);
-void RecordingAdd(int note, bool pressed);
+void RecordingAdd(int note);
 void PlaybackStart(void);
-void PlaybackUpdate(bool pressed[12]);
+void PlaybackUpdate(bool pressed[NOTE_COUNT]);
 bool isRecording(void);
 bool isPlaying(void);
+int RecordingGetCount(void);
 
 #endif
