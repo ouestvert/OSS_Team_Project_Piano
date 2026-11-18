@@ -1,6 +1,7 @@
 #include "raylib.h"
 #include "note_io.h"
 #include "ui.h"
+#include "recording.h"
 
 int main(void)
 {
@@ -27,13 +28,25 @@ int main(void)
    
         bool pressed[12]={false};
 
+        // R 키: 녹음 켜기/끄기, P 키:재생
+        if(IsKeyPressed(KEY_R)){
+            if(isRecording()) RecordingStop();
+            else RecordingStart();
+        }
+
+        if(IsKeyPressed(KEY_P)) PlaybackStart();
+
          for (int i = 0; i < 12; i++)
-        {
+        {   
+            if(IsKeyPressed(keyMap[i])) RecordingAdd(i);
             if (IsKeyDown(keyMap[i]))
             {
                 pressed[i] = true;
             }
         }
+
+        PlaybackUpdate(pressed);
+
         BeginDrawing();
         ClearBackground(RAYWHITE);
         DrawPianoUI(pressed);
