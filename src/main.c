@@ -2,6 +2,7 @@
 #include "note_io.h"
 #include "ui.h"
 #include "recording.h"
+#include "audio_engine.h"
 
 int main(void)
 {
@@ -14,7 +15,7 @@ int main(void)
     CloseWindow();
     return 1;
     }
-
+    ReadNote();
     while (!WindowShouldClose()) 
     {
         UpdateNoteIO();
