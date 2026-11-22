@@ -1,4 +1,5 @@
 #include "raylib.h"
+#include "note_io.h"
 #define Note_Count 13
 
 char NotePaths[Note_Count][50];
@@ -23,7 +24,7 @@ char NotePaths[Note_Count][50]=
 };
 
 
-int UpdateSound(void)
+int PianoSound(void)
 {
 
     for(int i=0;i<Note_Count;i++)
@@ -38,5 +39,68 @@ int UpdateSound(void)
 
     return 1;
 
-}
+};
 
+int Keypress()
+{
+    InitAudioDevice();
+    PianoSound();
+
+    while(!WindowShouldClose())
+    {
+        if(IsKeyPressed(KEY_A))
+        {
+            PlaySound(Note[0]);
+        }
+        if(IsKeyPressed(KEY_W))
+        {
+            PlaySound(Note[1]);
+        }
+        if(IsKeyPressed(KEY_S))
+        {
+            PlaySound(Note[2]);
+        }
+        if(IsKeyPressed(KEY_E))
+        {
+            PlaySound(Note[3]);
+        }
+        if(IsKeyPressed(KEY_D))
+        {
+            PlaySound(Note[4]);
+        }
+        if(IsKeyPressed(KEY_F))
+        {
+            PlaySound(Note[5]);
+        }
+        if(IsKeyPressed(KEY_T))
+        {
+            PlaySound(Note[6]);
+        }
+        if(IsKeyPressed(KEY_G))
+        {
+            PlaySound(Note[7]);
+        }
+        if(IsKeyPressed(KEY_Y))
+        {
+            PlaySound(Note[8]);
+        }
+        if(IsKeyPressed(KEY_H))
+        {
+            PlaySound(Note[9]);
+        }
+        if(IsKeyPressed(KEY_U))
+        {
+            PlaySound(Note[10]);
+        }
+        if(IsKeyPressed(KEY_J))
+        {
+            PlaySound(Note[11]);
+        }
+        if(IsKeyPressed(KEY_K))
+        {
+            PlaySound(Note[12]);
+        }
+    }
+
+    return 0;
+}

@@ -1,5 +1,5 @@
 #include "raylib.h"
-
+#include "note_io.h"
 
 int main(void)
 {
@@ -8,7 +8,7 @@ int main(void)
     
     while (!WindowShouldClose()) 
     {
-        
+        Keypress();
     }
 
     
