@@ -100,6 +100,10 @@ int Keypress()
         {
             PlaySound(Note[12]);
         }
+
+        BeginDrawing();
+        ClearBackground(RAYWHITE);
+        EndDrawing();
     }
 
     return 0;
