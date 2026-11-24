@@ -3,15 +3,16 @@
 
 int CurrentKey = -1;
 
-static double pressedUntil[13] = { 0 };                  // ← 추가
-static const int whiteNote[7] = { 0, 2, 4, 5, 7, 9, 11 };  // ← 추가
+static double pressedUntil[13] = { 0 };                
+static const int whiteNote[7] = { 0, 2, 4, 5, 7, 9, 11 }; 
 static const int blackNote[7] = { 1, 3, -1, 6, 8, 10, -1 };
+static const char *whiteName[7]={"C", "D", "E", "F", "G", "A", "B"};
 
 void UIInput(int key)
 {
     CurrentKey = key;
 
-    if (key >= 0 && key < 13)                            // ← 추가
+    if (key >= 0 && key < 13)                     
     {
         pressedUntil[key] = GetTime() + 0.2;
     }
@@ -19,8 +20,8 @@ void UIInput(int key)
 
 void DrawPianoUI(void)
 {
-    int startX = 100;
-    int startY = 80;
+    int startX = 220;
+    int startY = 400;
     int keyWidth = 80;
     int keyHeight = 200;
 
@@ -28,14 +29,19 @@ void DrawPianoUI(void)
     {
         int x = startX + i * keyWidth;
 
-        Color keyColor = WHITE;                          // ← 추가
+        Color keyColor = WHITE;                        
         if (GetTime() < pressedUntil[whiteNote[i]])
         {
             keyColor = SKYBLUE;
         }
 
-        DrawRectangle(x, startY, keyWidth, keyHeight, keyColor);  // ← 변경 (WHITE → keyColor)
+        DrawRectangle(x, startY, keyWidth, keyHeight, keyColor); 
         DrawRectangleLines(x, startY, keyWidth, keyHeight, BLACK);
+        
+        
+        int textWidth = MeasureText(whiteName[i], 24);
+        DrawText(whiteName[i], x + (keyWidth - textWidth) / 2, startY + keyHeight - 40, 24, BLACK);
+   
     }
 
     int blackWidth = 40;
