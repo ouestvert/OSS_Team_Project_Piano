@@ -12,4 +12,3 @@ void UIInput(int key);
 void UIInput(int key);
 
 #endif
-
