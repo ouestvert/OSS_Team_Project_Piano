@@ -68,12 +68,12 @@ int ReadSC1(FILE *in, int i){
 int ReadSC2(FILE *in, int i){
     char DataCheck[4] = {0};
     char Subchunk2[8] = {0};
-    while(strcmp(DataCheck, "fmt ") != 0){
+   while(strcmp(DataCheck, "Data ") != 0){
         fseek(in, -3, SEEK_CUR);
         fread(DataCheck, sizeof(char), 4, in);
         
         if(DataCheck[4]==EOF){
-            printf("Error: Not Found 'data' chunk)\n");
+            printf("Error: Not Found 'fmt ' chunk)\n");
             return 1;
         }
     }
