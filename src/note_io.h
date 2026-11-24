@@ -9,5 +9,6 @@ extern Sound Note[Note_Count];
 
 
 int PianoSound(void);
+int Keypress(void);
 
 #endif
