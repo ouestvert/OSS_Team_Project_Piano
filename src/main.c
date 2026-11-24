@@ -1,5 +1,6 @@
 #include "raylib.h"
 #include "note_io.h"
+#include "ui.h"
 
 int main(void)
 {
@@ -10,7 +11,10 @@ int main(void)
     
     while (!WindowShouldClose()) 
     {
-        
+        BeginDrawing();
+        ClearBackground(RAYWHITE);
+        DrawPianoUI();
+        EndDrawing();
     }
 
     
