@@ -17,6 +17,9 @@ add_executable(piano
     src/ui.c
     src/recording.c
     src/note_io.c
+    src/audio_engine.c
 )
 target_compile_features(piano PRIVATE c_std_11)
 target_link_libraries(piano PRIVATE raylib)
+
+set_property(TARGET piano PROPERTY VS_DEBUGGER_WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}")
