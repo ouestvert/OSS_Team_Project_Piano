@@ -22,7 +22,7 @@ struct Wavfile{
 
 int Little(char data[], int size){
     int result = 0;
-    for(int i= size-1; i>0; i--){
+    for(int i= size-1; i>=0; i--){
 
         result = result*256 + (unsigned char)data[i];
     }
@@ -33,19 +33,30 @@ int Little(char data[], int size){
 // 4 id  4 s /2 2 4 4 2 2/
 // Read SubChunk1
 int ReadSC1(FILE *in, int i){
-    char Fmtcheck[4] = {0};
+    
     char Subchunk1[24] = {0};
-    while(strcmp(Fmtcheck, "fmt ") != 0){
-        fseek(in, -3, SEEK_CUR);
-        fread(Fmtcheck, sizeof(char), 4, in);
-        
-        if(Fmtcheck[4]==EOF){
-            printf("Error: Not Found 'fmt ' chunk)\n");
-            return 1;
+    char Fmtcheck[5] = {0};
+    int found = 0;
+
+    while (fread(Fmtcheck, sizeof(char), 4, in) == 4) {
+        if (strcmp(Fmtcheck, "fmt ") == 0) {
+            found = 1;
+         break;
         }
+
+        fseek(in, -3, SEEK_CUR);
+        
     }
+
+    if (found == 0) {
+        printf("Error: Could not find 'fmt ' chunk.\n");
+        return 1;
+    }
+
     fseek(in, -4, SEEK_CUR);
+
     fread(Subchunk1, sizeof(char), 24, in);
+    
     strcpy_s(Result[i].Subchunk1ID, sizeof(Result[i].Subchunk1ID), Fmtcheck);   
     Result[i].Subchunk1Size = Little(&Subchunk1[4], 4);
     Result[i].AudioFormat = Little(&Subchunk1[8], 2);
@@ -54,6 +65,7 @@ int ReadSC1(FILE *in, int i){
     Result[i].ByteRate = Little(&Subchunk1[16], 4);
     Result[i].BlockAlign = Little(&Subchunk1[20], 2);
     Result[i].BitsPerSample = Little(&Subchunk1[22], 2);
+    printf("Chunk ID: %s\n", Subchunk1);
     printf("subchunk1size: %d\n", Result[i].Subchunk1Size);
     printf("audioformat: %d\n", Result[i].AudioFormat);
     printf("numchannels: %d\n", Result[i].NumChannels);
@@ -66,21 +78,33 @@ int ReadSC1(FILE *in, int i){
 }
 
 int ReadSC2(FILE *in, int i){
-    char DataCheck[4] = {0};
+    char DataCheck[5] = {0};
     char Subchunk2[8] = {0};
-   while(strcmp(DataCheck, "Data ") != 0){
-        fseek(in, -3, SEEK_CUR);
-        fread(DataCheck, sizeof(char), 4, in);
-        
-        if(DataCheck[4]==EOF){
-            printf("Error: Not Found 'fmt ' chunk)\n");
-            return 1;
+    int found = 0;
+    while (fread(DataCheck, sizeof(char), 4, in) == 4) {
+        if (strcmp(DataCheck, "data") == 0) {
+            found = 1;
+            break;
         }
+
+        fseek(in, -3, SEEK_CUR);
+        
     }
+
+    if (found == 0) {
+        printf("Error: Could not find 'fmt ' chunk.\n");
+        return 1;
+    }
+
     fseek(in, -4, SEEK_CUR);
 
+    fread(Subchunk2, sizeof(char), 8, in);
+    
+
+    
     strcpy_s(Result[i].Subchunk2ID, sizeof(Result[i].Subchunk2ID), DataCheck);   
     Result[i].Subchunk2Size = Little(&Subchunk2[4], 4);
+    printf("\nChunk ID: %s\n", Subchunk2);
     printf("%d\n", Result[i].Subchunk2Size);
     return 0;
 }
@@ -130,7 +154,7 @@ int ReadWav(){
             printf("Error: ReadSC1 failed in[%d]\n", i);
             return 1;
         }
-        if(ReadSC2!=0){
+        if(ReadSC2(in[i], i)!=0){
             printf("Error: ReadSC2 failed in[%d]\n", i);
             return 1;
         }
@@ -148,5 +172,5 @@ int ReadWav(){
 
 
 
-
+    return 0;
 }
