@@ -2,7 +2,7 @@
 #include "note_io.h"
 #include "ui.h"
 #include "recording.h"
-
+#include "audio_engine.h"
 
 int main(void)
 {
@@ -11,9 +11,11 @@ int main(void)
 
     InitAudioDevice();
     PianoSound();
-    
+    ReadWav();
     while (!WindowShouldClose()) 
-    {
+    {   if(IsKeyPressed(KEY_P)) RecordingStart();
+        if(IsKeyPressed(KEY_T)) RecordingStop();
+
         int key = Keypress();
 
         
