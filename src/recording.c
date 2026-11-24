@@ -3,6 +3,10 @@
 
 int RecordingKey = -1;
 
+void RecordingInput(int key)
+{
+    RecordingKey = key;
+}
 static bool isRecording= false;
 static int noteCount =0;
 static double startTime = 0.0;

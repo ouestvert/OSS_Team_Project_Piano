@@ -1,6 +1,9 @@
 #include "raylib.h"
 #ifndef RECORDING_H
 #define RECORDING_H
+
+void RecordingInput(int key);
+
 #include <stdbool.h>
 
 #define MAX_NOTE 500
