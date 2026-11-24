@@ -13,7 +13,9 @@ int main(void)
     PianoSound();
     
     while (!WindowShouldClose()) 
-    {
+    {   if(IsKeyPressed(KEY_P)) RecordingStart();
+        if(IsKeyPressed(KEY_T)) RecordingStop();
+
         int key = Keypress();
 
         
