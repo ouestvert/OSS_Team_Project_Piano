@@ -50,62 +50,62 @@ int Keypress()
             PlaySound(Note[0]);
             return 0;
         }
-        if(IsKeyPressed(KEY_W))
+    if(IsKeyPressed(KEY_W))
         {
             PlaySound(Note[1]);
             return 1;
         }
-        if(IsKeyPressed(KEY_S))
+    if(IsKeyPressed(KEY_S))
         {
             PlaySound(Note[2]);
             return 2;
         }
-        if(IsKeyPressed(KEY_E))
+    if(IsKeyPressed(KEY_E))
         {
             PlaySound(Note[3]);
             return 3;
         }
-        if(IsKeyPressed(KEY_D))
+    if(IsKeyPressed(KEY_D))
         {
             PlaySound(Note[4]);
             return 4;
         }
-        if(IsKeyPressed(KEY_F))
+    if(IsKeyPressed(KEY_F))
         {
             PlaySound(Note[5]);
             return 5;
         }
-        if(IsKeyPressed(KEY_T))
+    if(IsKeyPressed(KEY_T))
         {
             PlaySound(Note[6]);
             return 6;
         }
-        if(IsKeyPressed(KEY_G))
+    if(IsKeyPressed(KEY_G))
         {
             PlaySound(Note[7]);
             return 7;
         }
-        if(IsKeyPressed(KEY_Y))
+    if(IsKeyPressed(KEY_Y))
         {
             PlaySound(Note[8]);
             return 8;
         }
-        if(IsKeyPressed(KEY_H))
+    if(IsKeyPressed(KEY_H))
         {
             PlaySound(Note[9]);
             return 9;
         }
-        if(IsKeyPressed(KEY_U))
+    if(IsKeyPressed(KEY_U))
         {
             PlaySound(Note[10]);
             return 10;
         }
-        if(IsKeyPressed(KEY_J))
+    if(IsKeyPressed(KEY_J))
         {
             PlaySound(Note[11]);
             return 11;
         }
-        if(IsKeyPressed(KEY_K))
+    if(IsKeyPressed(KEY_K))
         {
             PlaySound(Note[12]);
             return 12;

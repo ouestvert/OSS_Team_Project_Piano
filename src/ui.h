@@ -2,7 +2,7 @@
 #ifndef UI_H
 #define UI_H
 
-void UI_Input(int key);
+void UIInput(int key);
 
 #endif
 

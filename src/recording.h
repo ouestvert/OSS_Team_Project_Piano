@@ -2,6 +2,6 @@
 #ifndef RECORDING_H
 #define RECORDING_H
 
-void UI_Input(int key);
+void RecordingInput(int key);
 
 #endif
