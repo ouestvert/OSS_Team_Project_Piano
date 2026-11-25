@@ -3,7 +3,7 @@
 
 void DrawPianoUI(void);
 void UIInput(int key);
-
+void DrawRecording();
 #endif
 #include "raylib.h"
 #ifndef UI_H
