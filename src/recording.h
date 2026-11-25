@@ -8,7 +8,7 @@ void RecordingInput(int key);
 
 #define MAX_NOTE 500
 
-typedef struct NoteEvent {
+typedef struct  {
     int note;
     float time;
     float duration;
