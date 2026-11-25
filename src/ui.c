@@ -1,6 +1,6 @@
 #include "raylib.h"
 #include "ui.h"
-#include "recording.h"
+
 #define RX 220
 #define RY 60
 #define RW 560
@@ -19,7 +19,7 @@ static const int isSharp[12] = { 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0 };
 void UIInput(int key)
 {
     CurrentKey = key;
-    
+
     if (key >= 0 && key < 13)       
     {
         pressedUntil[key] = GetTime() + 0.2;
@@ -44,23 +44,6 @@ static void DrawNoteGrid(void)
     }
 }
 
-void DrawRecording(){
-    if(CurrentKey==13) {
-            if(IsRecording()) {
-                RecordingStop();
-                
-            }
-            else {
-                RecordingStart();
-                
-            }
-            
-    }
-    if(IsRecording())  DrawText("Recording", 10 , 10, 40, BLACK);
-
-
-
-}
 
 
 void DrawPianoUI(void)

@@ -110,10 +110,7 @@ int Keypress()
             PlaySound(Note[12]);
             return 12;
         }
-    if(IsKeyPressed(KEY_R))
-    {
-      return 13;  
-    }
+
    
 
     return -1;
