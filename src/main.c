@@ -14,18 +14,20 @@ int main(void)
     ReadWav();
     while (!WindowShouldClose()) 
     {   
-        if(IsKeyPressed(KEY_P)) RecordingStart();
-        if(IsKeyPressed(KEY_T)) RecordingStop();
+       
 
         int key = Keypress();
-
+       
         
         UIInput(key);
         RecordingInput(key);
+        
+        
 
         BeginDrawing();
         ClearBackground(RAYWHITE);
         DrawPianoUI();
+        DrawRecording();
         EndDrawing();
         
     }
