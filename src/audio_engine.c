@@ -116,6 +116,47 @@ int ReadSC2(FILE *in, int i){
     return 0;
 }
 
+
+
+
+int RTData(FILE *in, int i){
+    int32_t DataSize = Result[i].Subchunk2Size;
+    int32_t j=0;
+    char *Data = malloc(DataSize);
+    int32_t *Trans = malloc((DataSize / 3) * sizeof *Trans);
+    int32_t sample =0;
+    
+    fread(Data, sizeof(unsigned char), DataSize, in);
+    
+    
+    for(int32_t i =0; i<DataSize; i+=3){
+        if(i!=0&&i%3==0) j++;
+        sample = Little(&Data[i], 3);
+
+        if (sample >= 8388608) {
+            sample = sample - 16777216;
+        }
+
+        Trans[j] = sample;
+
+
+    }
+    free(Data);
+    Result[i].Samples = Trans;
+    Result[i].SampleSize = DataSize/3;
+    for(int32_t i =0; i<20; i++){
+        
+        printf("%d ", Trans[i]);
+        if(i!=0&&i%10==0) printf("\n");
+    }
+    printf("\n");
+    return 0;
+
+
+
+}
+
+
 int Check_Header(FILE *in){
     char Header[12] ={0};
     fread(Header, sizeof(char), 12, in);
@@ -165,18 +206,11 @@ int ReadWav(){
             printf("Error: ReadSC2 failed in[%d]\n", i);
             return 1;
         }
-        
-
-
-
-
-
-
+        printf("Complete Read Wav Chunk in[%d]\n", i);
+        if(RTData(in[i], i)!= 0){
+            printf("Error: RTData failed in[%d]\n", i);
+        }
     }
-
-
-
-
 
 
     return 0;
