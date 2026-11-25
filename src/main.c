@@ -28,6 +28,7 @@ int main(void)
         ClearBackground(RAYWHITE);
         DrawPianoUI();
         DrawRecording();
+        DrawPlaying();
         EndDrawing();
         
     }

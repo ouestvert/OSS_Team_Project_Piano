@@ -114,7 +114,9 @@ int Keypress()
     {
       return 13;  
     }
-   
+    if(IsKeyPressed(KEY_P)){
+        return 14;
+    }
 
     return -1;
 }

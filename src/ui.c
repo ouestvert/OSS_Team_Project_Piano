@@ -56,13 +56,17 @@ void DrawRecording(){
             }
             
     }
-    if(IsRecording())  DrawText("Recording", 10 , 10, 40, BLACK);
+    if(IsRecording())  DrawText("Record", 100 , 0, 30, RED);
 
 
 
 }
 
-
+void DrawPlaying(){
+    if(CurrentKey == 14){
+        DrawText("Play", 250, 0, 30, GREEN);
+    }
+}
 void DrawPianoUI(void)
 {
     DrawNoteGrid();
