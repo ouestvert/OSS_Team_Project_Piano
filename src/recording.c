@@ -21,10 +21,9 @@ void RecordingStop(void){
 void RecordingInput(int key)
 {
     RecordingKey = key;
-
+    
     if(!isRecording) return;
     if(noteCount >= MAX_NOTE) return;
-
     double currentTime = GetTime()- startTime;
 
     notes[noteCount].note =key;
@@ -38,5 +37,6 @@ void RecordingInput(int key)
     noteCount++;
 }
 bool IsRecording(void){
+    
     return isRecording;
 }
